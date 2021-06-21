@@ -1,0 +1,75 @@
+---
+title: "Analysis of Covid-19 in UK"
+author: "group6"
+date: "2021/6/20"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, eval = TRUE, warning = FALSE, message = FALSE, comment = NA)
+```
+
+```{r libraries}
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(moderndive)
+library(skimr)
+library(kableExtra)
+library(gridExtra)
+library(stringr)
+```
+
+
+```{r data, echo = FALSE, eval = TRUE}
+data <- read_csv("data.xls.csv")
+```
+
+# Introduction {#sec:Intro}
+
+
+# Exploratory Data Analysis {#sec:EDA}
+The summary bar plot of covid-19 positive rate in different parts of uk.
+```{r, eval = TRUE,echo = FALSE,fig.align='center',fig.cap = "\\label{fig:box} positive rate in UK 2021", fig.pos = 'H'}}
+
+a1=sum(data$Positive.number[data$Time=='7-Mar-21'])
+a2=sum(data$Sample.number[data$Time=='7-Mar-21'])
+a3=a1/a2
+
+b1=sum(data$Positive.number[data$Time=='21-Mar-21'])
+b2=sum(data$Sample.number[data$Time=='21-Mar-21'])
+b3=b1/b2
+
+c1=sum(data$Positive.number[data$Time=='4-Apr-21'])
+c2=sum(data$Sample.number[data$Time=='4-Apr-21'])
+c3=c1/c2
+
+d1=sum(data$Positive.number[data$Time=='18-Apr-21'])
+d2=sum(data$Sample.number[data$Time=='18-Apr-21'])
+d3=d1/d2
+
+e1=sum(data$Positive.number[data$Time=='2-May-21'])
+e2=sum(data$Sample.number[data$Time=='2-May-21'])
+e3=e1/e2
+
+f1=sum(data$Positive.number[data$Time=='7-Mar-21'])
+f2=sum(data$Sample.number[data$Time=='7-Mar-21'])
+f3=f1/f2
+
+age_pop=c(a3,b3,c3,d3,e3,f3)
+names(age_pop)=c('7-Mar','21-Mar','4-Apr',
+                 '18-Apr','2-May','7-Mar')
+
+barplot(age_pop, main='positive rate in UK 2021', 
+        col=rgb(0.2, 0.4, 0.6, 0.6),
+        xlab='positive rate',horiz=T, las=1)
+
+```
+Maybe we can use different color or type.
+```{r, eval = TRUE,echo = FALSE,fig.align='center',fig.cap = "\\label{fig:box} positive rate in UK 2021", fig.pos = 'H'}}
+barplot(age_pop , density=c(10,20,30,40,50,60) , angle=c(0,45,90,11,30,60) ,
+         col='brown' ,horiz=T, las=1 )
+```
+Figure \ref{fig:box} shows that ...
+
